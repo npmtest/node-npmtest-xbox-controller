@@ -1,0 +1,1544 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-xbox-controller/node_modules/xbox-controller/lib/xbox.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-xbox-controller">npmtest-xbox-controller (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-xbox-controller/node_modules/xbox-controller/lib/xbox.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">1.14% <small>(3 / 264)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 122)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 15)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">1.14% <small>(3 / 263)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-xbox-controller/node_modules/xbox-controller/lib/</a> &#187; xbox.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441</td><td class="line-coverage"><span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var HID = require('node-hid'),
+  util = require('util'),
+  chalk = require('chalk'),
+  events = require('events'),
+  fs = require('fs'),
+  path = require('path'),
+  triggers = require('./triggers.json'),
+  buttons = require('./buttons.json'),
+  within = require('./mixins/within'),
+  __ = require('lodash'),
+  joysticks = require('./joysticks.json');
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var dead = 6000;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >function uint8Toint16(low, high) {</span>
+<span class="cstat-no" title="statement not covered" >  var buffer = new ArrayBuffer(4);</span>
+<span class="cstat-no" title="statement not covered" >  var int8View = new Uint8Array(buffer);</span>
+<span class="cstat-no" title="statement not covered" >  var int16View = new Int16Array(buffer);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  int8View[0] = low;</span>
+<span class="cstat-no" title="statement not covered" >  int8View[1] = high;</span>
+<span class="cstat-no" title="statement not covered" >  return int16View[0];</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function XboxController(serialNumber) {</span>
+  
+<span class="cstat-no" title="statement not covered" >  if( serialNumber) {</span>
+<span class="cstat-no" title="statement not covered" >    this.serialNumber = serialNumber.toUpperCase();</span>
+  }
+  
+<span class="cstat-no" title="statement not covered" >  this.position = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var button in buttons) {</span>
+<span class="cstat-no" title="statement not covered" >    this[button] = 0;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  for (var trigger in triggers) {</span>
+<span class="cstat-no" title="statement not covered" >    this[trigger] = 0;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  this.leftx = 0;</span>
+<span class="cstat-no" title="statement not covered" >  this.lefty = 0;</span>
+<span class="cstat-no" title="statement not covered" >  this.rightx = 0;</span>
+<span class="cstat-no" title="statement not covered" >  this.righty = 0;</span>
+<span class="cstat-no" title="statement not covered" >  this.hid = false;</span>
+<span class="cstat-no" title="statement not covered" >  this._controllerLoadingInterval = false;</span>
+<span class="cstat-no" title="statement not covered" >  this.loadController();</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >var location, bufferStore = [],</span>
+  original = 1,
+  count = 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.analyze = <span class="fstat-no" title="function not covered" >function analyze(key, type, axis) {</span></span>
+<span class="cstat-no" title="statement not covered" >  if (original === 1) {</span>
+<span class="cstat-no" title="statement not covered" >    original = bufferStore[bufferStore.length - 1];</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (type === 'key') {</span>
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; bufferStore.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      for (n = 0; n &lt; bufferStore[i].length; n++) {</span>
+<span class="cstat-no" title="statement not covered" >        if (bufferStore[i][n] !== original[n]) {</span>
+<span class="cstat-no" title="statement not covered" >          buttons[key].block = n;</span>
+<span class="cstat-no" title="statement not covered" >          buttons[key].bitwise = parseInt("0x" + parseInt(bufferStore[i][n].toString(16), 10), 16);</span>
+<span class="cstat-no" title="statement not covered" >          bufferStore = [];</span>
+<span class="cstat-no" title="statement not covered" >          console.log(buttons[key].block, buttons[key].bitwise, bufferStore);</span>
+<span class="cstat-no" title="statement not covered" >          count += 1;</span>
+<span class="cstat-no" title="statement not covered" >          XboxController.configure();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+      }
+    }
+  } else <span class="cstat-no" title="statement not covered" >if (type === 'trigger') {</span>
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; bufferStore.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      for (n = 0; n &lt; bufferStore[i].length; n++) {</span>
+<span class="cstat-no" title="statement not covered" >        var current = bufferStore[i][n];</span>
+<span class="cstat-no" title="statement not covered" >        if (current !== original[n] &amp;&amp; current !== 128 &amp;&amp; current !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log(bufferStore[bufferStore.length - 1][n]);</span>
+<span class="cstat-no" title="statement not covered" >          triggers[key].block = n;</span>
+<span class="cstat-no" title="statement not covered" >          bufferStore = [];</span>
+<span class="cstat-no" title="statement not covered" >          console.log(triggers[key].block, bufferStore);</span>
+<span class="cstat-no" title="statement not covered" >          count += 1;</span>
+<span class="cstat-no" title="statement not covered" >          XboxController.configure();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+      }
+    }
+  } else <span class="cstat-no" title="statement not covered" >if (type === 'joystick') {</span>
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; bufferStore.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      for (n = 0; n &lt; bufferStore[i].length; n++) {</span>
+<span class="cstat-no" title="statement not covered" >        var current = bufferStore[i][n],</span>
+          diffx = bufferStore[i][n] - original[n],
+          diffy = original[n] - bufferStore[i][n];
+<span class="cstat-no" title="statement not covered" >        if (current !== original[n] &amp;&amp; axis === 'leftx' &amp;&amp; diffx &gt; 70) {</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.leftxPos = n;</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.leftxState = (n - 1);</span>
+<span class="cstat-no" title="statement not covered" >          bufferStore = [];</span>
+<span class="cstat-no" title="statement not covered" >          console.log(joysticks.leftxPos, joysticks.leftxState);</span>
+<span class="cstat-no" title="statement not covered" >          count += 1;</span>
+<span class="cstat-no" title="statement not covered" >          XboxController.configure();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (current !== original[n] &amp;&amp; axis === 'rightx' &amp;&amp; diffx &gt; 70) {</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.rightxPos = n;</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.rightxState = (n - 1);</span>
+<span class="cstat-no" title="statement not covered" >          bufferStore = [];</span>
+<span class="cstat-no" title="statement not covered" >          console.log(joysticks.rightxPos, joysticks.rightxState);</span>
+<span class="cstat-no" title="statement not covered" >          count += 1;</span>
+<span class="cstat-no" title="statement not covered" >          XboxController.configure();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (current !== original[n] &amp;&amp; axis === 'lefty' &amp;&amp; diffy &gt; 70) {</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.leftyPos = n;</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.leftyState = (n - 1);</span>
+<span class="cstat-no" title="statement not covered" >          bufferStore = [];</span>
+<span class="cstat-no" title="statement not covered" >          console.log(joysticks.leftyPos, joysticks.leftyState);</span>
+<span class="cstat-no" title="statement not covered" >          count += 1;</span>
+<span class="cstat-no" title="statement not covered" >          XboxController.configure();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (current !== original[n] &amp;&amp; axis === 'righty' &amp;&amp; diffy &gt; 70) {</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.rightyPos = n;</span>
+<span class="cstat-no" title="statement not covered" >          joysticks.rightyState = (n - 1);</span>
+<span class="cstat-no" title="statement not covered" >          bufferStore = [];</span>
+<span class="cstat-no" title="statement not covered" >          console.log(joysticks.rightyPos, joysticks.rightyState);</span>
+<span class="cstat-no" title="statement not covered" >          count += 1;</span>
+<span class="cstat-no" title="statement not covered" >          XboxController.configure();</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+      }
+    }
+  }
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.reader = <span class="fstat-no" title="function not covered" >function read(key, inputLength, type, axis) {</span></span>
+<span class="cstat-no" title="statement not covered" >  location.read(onRead = <span class="fstat-no" title="function not covered" >function (err, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >    bufferStore.push(data);</span>
+<span class="cstat-no" title="statement not covered" >    if (bufferStore.length &lt; inputLength) {</span>
+<span class="cstat-no" title="statement not covered" >      location.read(onRead);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      XboxController.analyze(key, type, axis);</span>
+    }
+  });
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.configure = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >  switch (count) {</span>
+  case 0:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the A button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('a', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 1:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the Y Button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('y', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 2:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the B Button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('b', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 3:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the X Button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('x', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 4:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the Left Shoulder');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('leftshoulder', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 5:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the Right Shoulder');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('rightshoulder', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 6:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release D-pad up', 'key');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('dup', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 7:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release D-pad down');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('ddown', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 8:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release D-pad left');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('dleft', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 9:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release D-pad right');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('dright', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 10:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the left stick button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('leftstick', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 11:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the right stick button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('rightstick', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 12:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the start button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('start', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 13:
+<span class="cstat-no" title="statement not covered" >    console.log('Press and release the back button');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('back', 2, 'key', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 14:
+<span class="cstat-no" title="statement not covered" >    console.log('Wiggle the right trigger');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('right', 50, 'trigger', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 15:
+<span class="cstat-no" title="statement not covered" >    console.log('Wiggle the left trigger');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 50, 'trigger', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 16:
+<span class="cstat-no" title="statement not covered" >    console.log('Keep wiggling the left trigger');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 50, 'trigger', 0);</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 17:
+<span class="cstat-no" title="statement not covered" >    console.log('Move the left joystick a bit to the right');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'leftx');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 18:
+<span class="cstat-no" title="statement not covered" >    console.log('Keep moving the left joystick a bit to the right');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'leftx');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 19:
+<span class="cstat-no" title="statement not covered" >    console.log('Move the right joystick a bit to the right');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'rightx');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 20:
+<span class="cstat-no" title="statement not covered" >    console.log('Keep moving the right joystick a bit to the right');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'rightx');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 21:
+<span class="cstat-no" title="statement not covered" >    console.log('Move the right joystick upwards a bit');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'righty');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 22:
+<span class="cstat-no" title="statement not covered" >    console.log('Keep moving the right joystick upwards a bit');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'righty');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 23:
+<span class="cstat-no" title="statement not covered" >    console.log('Move the left joystick upwards a bit');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'lefty');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 24:
+<span class="cstat-no" title="statement not covered" >    console.log('Keep moving the left joystick upwards a bit');</span>
+<span class="cstat-no" title="statement not covered" >    XboxController.reader('left', 200, 'joystick', 'lefty');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  case 25:
+<span class="cstat-no" title="statement not covered" >    var joysticksDir = path.join(__dirname, 'joysticks.json'),</span>
+      triggersDir = path.join(__dirname, 'triggers.json'),
+      buttonsDir = path.join(__dirname, 'buttons.json');
+<span class="cstat-no" title="statement not covered" >    var configArray = [joysticksDir, triggersDir, buttonsDir],</span>
+      nameArray = [joysticks, triggers, buttons];
+<span class="cstat-no" title="statement not covered" >    for (i = 0; i &lt; configArray.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      fs.writeFile(configArray[i], JSON.stringify(nameArray[i], null, 4), <span class="fstat-no" title="function not covered" >function (err) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >throw err;</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log('Saved' + nameArray[i])</span>
+      });
+    }
+<span class="cstat-no" title="statement not covered" >    console.log('Config complete');</span>
+<span class="cstat-no" title="statement not covered" >    break;</span>
+  default:
+<span class="cstat-no" title="statement not covered" >    console.log('error try again');</span>
+  }
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >util.inherits(XboxController, events.EventEmitter);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.prototype.loadController = <span class="fstat-no" title="function not covered" >function () {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  HID.devices().forEach((<span class="fstat-no" title="function not covered" >function (d) {</span></span>
+  
+    
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    if( this.serialNumber )</span>
+    {  
+      // If the serial number is set, look for device with that serial number.
+<span class="cstat-no" title="statement not covered" >      var deviceSerialNumber = (typeof d === 'object' &amp;&amp; d.serialNumber) || '';</span>
+    
+<span class="cstat-no" title="statement not covered" >      if (deviceSerialNumber.indexOf(this.serialNumber) !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(chalk.green('notice: '), 'serial number found.');     </span>
+<span class="cstat-no" title="statement not covered" >        this.hid = new HID.HID(d.path);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(chalk.green('notice: '), 'Xbox controller connected (serial number: ' </span>
+        + d.serialNumber + ', path: ' + d.path + ')');
+<span class="cstat-no" title="statement not covered" >        this.emit('connected');</span>
+<span class="cstat-no" title="statement not covered" >        location = this.hid;</span>
+      }
+    } else {
+      // The serial number is not set, grab the first device.
+<span class="cstat-no" title="statement not covered" >      var product = (typeof d === 'object' &amp;&amp; d.product) || '';</span>
+<span class="cstat-no" title="statement not covered" >      if (product.toLowerCase().indexOf('controller') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >        this.hid = new HID.HID(d.path);        </span>
+<span class="cstat-no" title="statement not covered" >        console.log(chalk.green('notice: '), 'Xbox controller connected (serial number: ' </span>
+        + d.serialNumber + ', path: ' + d.path + ')');
+<span class="cstat-no" title="statement not covered" >        this.serialNumber = d.serialNumber;</span>
+<span class="cstat-no" title="statement not covered" >        this.emit('connected');</span>
+<span class="cstat-no" title="statement not covered" >        location = this.hid;</span>
+      }
+    }
+  } catch (ex) {
+<span class="cstat-no" title="statement not covered" >    console.log(chalk.green('notice: '), 'Xbox controller already in use (serial number: ' </span>
+        + d.serialNumber + ', path: ' + d.path + ')' );
+  }
+    
+  }).bind(this));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.hid === false &amp;&amp; !this._controllerLoadingInterval) {</span>
+<span class="cstat-no" title="statement not covered" >    this._controllerLoadingInterval = setInterval(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.loadController();</span>
+    }.bind(this), 2000);
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    this.hid.read(this.interpretData.bind(this));</span>
+  } catch (ex) {
+<span class="cstat-no" title="statement not covered" >    console.log(chalk.red('error: '), 'Xbox controller could not be found.');</span>
+<span class="cstat-no" title="statement not covered" >    this.emit('not-found');</span>
+  }
+&nbsp;
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.prototype.interpretData = <span class="fstat-no" title="function not covered" >function (error, data) {</span></span>
+<span class="cstat-no" title="statement not covered" >  if (error &amp;&amp; this.hid) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(chalk.red('error:'), error);</span>
+<span class="cstat-no" title="statement not covered" >    this.hid = false;</span>
+<span class="cstat-no" title="statement not covered" >    this.loadController();</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    clearInterval(this._controllerLoadingInterval);</span>
+<span class="cstat-no" title="statement not covered" >    this._controllerLoadingInterval = false;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var key in buttons) {</span>
+<span class="cstat-no" title="statement not covered" >    var address = buttons[key];</span>
+<span class="cstat-no" title="statement not covered" >    var state = data[address.block] &amp; address.bitwise;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (state ^ this[key]) {</span>
+<span class="cstat-no" title="statement not covered" >      this.emit((state ? key + ':press' : key + ':release'), key);</span>
+<span class="cstat-no" title="statement not covered" >      this[key] = state;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var trigger in triggers) {</span>
+<span class="cstat-no" title="statement not covered" >    var address = triggers[trigger];</span>
+<span class="cstat-no" title="statement not covered" >    var state = data[address.block];</span>
+<span class="cstat-no" title="statement not covered" >    if (state ^ this[trigger]) {</span>
+<span class="cstat-no" title="statement not covered" >      this.emit(trigger + 'trigger', state);</span>
+<span class="cstat-no" title="statement not covered" >      this[trigger] = state;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var leftx = uint8Toint16(data[joysticks.leftxState], data[joysticks.leftxPos]);</span>
+<span class="cstat-no" title="statement not covered" >  var lefty = uint8Toint16(data[joysticks.leftyState], data[joysticks.leftyPos]);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (leftx ^ this.leftx | lefty ^ this.lefty) {</span>
+<span class="cstat-no" title="statement not covered" >    if (leftx &gt; -1 * dead &amp;&amp; leftx &lt; dead) {</span>
+<span class="cstat-no" title="statement not covered" >      leftx = 0;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (lefty &gt; -1 * dead &amp;&amp; lefty &lt; dead) {</span>
+<span class="cstat-no" title="statement not covered" >      lefty = 0;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.emit('left:move', {</span>
+      x: leftx,
+      y: lefty
+    });
+<span class="cstat-no" title="statement not covered" >    this.leftx = leftx;</span>
+<span class="cstat-no" title="statement not covered" >    this.lefty = lefty;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var rightx = uint8Toint16(data[joysticks.rightxState], data[joysticks.rightxPos]);</span>
+<span class="cstat-no" title="statement not covered" >  var righty = uint8Toint16(data[joysticks.rightyState], data[joysticks.rightyPos]);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (rightx ^ this.rightx | righty ^ this.righty) {</span>
+<span class="cstat-no" title="statement not covered" >    if (rightx &gt; -1 * dead &amp;&amp; rightx &lt; dead) {</span>
+<span class="cstat-no" title="statement not covered" >      rightx = 0;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (righty &gt; -1 * dead &amp;&amp; righty &lt; dead) {</span>
+<span class="cstat-no" title="statement not covered" >      righty = 0;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.emit('right:move', {</span>
+      x: rightx,
+      y: righty
+    });
+<span class="cstat-no" title="statement not covered" >    this.rightx = rightx;</span>
+<span class="cstat-no" title="statement not covered" >    this.righty = righty;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.hid.read(this.interpretData.bind(this));</span>
+};
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.prototype.sendCommand = <span class="fstat-no" title="function not covered" >function (command, errorMsg) {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    this.hid.write(command);</span>
+  } catch (ex) {
+<span class="cstat-no" title="statement not covered" >    console.log(chalk.red('error: '), errorMsg);</span>
+  }
+};
+&nbsp;
+/*
+&nbsp;
+Pattern  Description
+0x00   All off
+0x01   All blinking
+0x02   1 flashes, then on
+0x03   2 flashes, then on
+0x04   3 flashes, then on
+0x05   4 flashes, then on
+0x06   1 on
+0x07   2 on
+0x08   3 on
+0x09   4 on
+0x0A   Rotating (e.g. 1-2-4-3)
+0x0B   Blinking*
+0x0C   Slow blinking*
+0x0D   Alternating (e.g. 1+4-2+3), then back to previous*
+&nbsp;
+ */
+// input one of the patterns abov
+<span class="cstat-no" title="statement not covered" >XboxController.prototype.setLed = <span class="fstat-no" title="function not covered" >function (flag) {</span></span>
+<span class="cstat-no" title="statement not covered" >  this.sendCommand([0x01, 0x03, flag], 'Xbox cant set LED to HEX ' + flag);</span>
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.prototype.powerOff = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >  this.sendCommand([0x02, 0x02], 'Xbox controller wont poweroff');</span>
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >XboxController.prototype.rumble = <span class="fstat-no" title="function not covered" >function (left, right) {</span></span>
+<span class="cstat-no" title="statement not covered" >  if (typeof left === "undefined" || left === null) {</span>
+<span class="cstat-no" title="statement not covered" >    left = 0xff;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (typeof right === "undefined" || right === null) {</span>
+<span class="cstat-no" title="statement not covered" >    right = 0xff;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  this.sendCommand([0x00, 0x00, 0x04, left, right], 'Xbox controller wont rumble');</span>
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >__.mixin(XboxController.prototype, within);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >module.exports = XboxController;</span>
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 20 2017 14:25:13 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
